@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Job-Navigator | Schülerlotse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg-gradient-start: #0f172a;
+      --bg-gradient-end: #1e293b;
+      --card-bg: rgba(15, 23, 42, 0.96);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
+      --radius-xl: 1.5rem;
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.65);
+      --transition-fast: 180ms ease-out;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background: radial-gradient(circle at top, #1d4ed8 0, transparent 55%),
+        radial-gradient(circle at bottom, #22c55e 0, transparent 55%),
+        linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    header h1 span {
+      background: linear-gradient(120deg, #38bdf8, #a855f7, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-subtle);
+      padding: 1.75rem 1.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.18rem 0.7rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.25);
+    }
+
+    .question {
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .question.active {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0b1120;
+      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn.ghost {
+      background: rgba(15, 23, 42, 0.75);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .nav-arrows {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .nav-btn {
+      background: rgba(148, 163, 184, 0.15);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .nav-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1><span>Job-Navigator</span></h1>
+      <p>Finde in wenigen Klicks dein nächstes Angebot rund um Beruf, Ausbildung & Studium.</p>
+    </header>
+
+    <main class="card">
+
+      <div class="chip">
+        <span class="chip-dot"></span>
+        Schüler:innen · Jugendliche · Studienzweifler:innen · Eltern
+      </div>
+
+      <!-- Frage 1 -->
+      <section class="question active" data-step="1">
+        <div>
+          <div class="step-label">Frage 1 von 4</div>
+          <h2 class="question-title">
+            Du weißt noch nicht, was du später einmal arbeiten möchtest und suchst deinen Traumberuf?
+          </h2>
+          <p class="question-subtitle">
+            Wir unterstützen dich mit einem Berufsprofiling und passenden Impulsen zu deinen Stärken.
+          </p>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://google.com" target="_blank">
+            <span>Ja, ich brauche Orientierung</span>
+          </a>
+
+          <button class="btn ghost btn-next">
+            <span>Nein, ich weiß es schon</span>
+          </button>
+        </div>
+
+        <div class="nav-arrows">
+          <span></span>
+          <button class="nav-btn btn-next">→</button>
+        </div>
+      </section>
+
+      <!-- Frage 2 -->
+      <section class="question" data-step="2">
+        <div>
+          <div class="step-label">Frage 2 von 4</div>
+          <h2 class="question-title">
+            Hast du Fragen zu deiner Bewerbung?
+          </h2>
+          <p class="question-subtitle">
+            Wir schauen gemeinsam auf deine Unterlagen und geben dir Feedback zu Anschreiben, Lebenslauf & Co.
+          </p>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://youtube.com" target="_blank">
+            <span>Ja, ich brauche Hilfe bei der Bewerbung</span>
+          </a>
+
+          <button class="btn ghost btn-next">
+            <span>Nein, weiter</span>
+          </button>
+        </div>
+
+        <div class="nav-arrows">
+          <button class="nav-btn btn-prev">←</button>
+          <button class="nav-btn btn-next">→</button>
+        </div>
+      </section>
+
+      <!-- Frage 3 -->
+      <section class="question" data-step="3">
+        <div>
+          <div class="step-label">Frage 3 von 4</div>
+          <h2 class="question-title">
+            Bist du auf der Suche nach einem Praktikum oder einer Ausbildung?
+          </h2>
+          <p class="question-subtitle">
+            In der IHK-Lehrstellenbörse und bei den Praktikumswochen BW findest du aktuelle Angebote in deiner Region.
+          </p>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://chatgpt.com" target="_blank">
+            <span>Ja, ich suche eine Stelle</span>
+          </a>
+
+          <button class="btn ghost btn-next">
+            <span>Nein, weiter</span>
+          </button>
+        </div>
+
+        <div class="nav-arrows">
+          <button class="nav-btn btn-prev">←</button>
+          <button class="nav-btn btn-next">→</button>
+        </div>
+      </section>
+
+      <!-- Frage 4 -->
+      <section class="question" data-step="4">
+        <div>
+          <div class="step-label">Frage 4 von 4</div>
+          <h2 class="question-title">
+            Hast du weitere Fragen zur dualen Ausbildung?
+          </h2>
+          <p class="question-subtitle">
+            Buche dir einen Termin und sprich direkt mit unseren Expertinnen und Experten.
+          </p>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="https://google.com" target="_blank">
+            <span>Ja, ich möchte einen Termin buchen</span>
+          </a>
+
+          <a class="btn ghost" href="https://youtube.com" target="_blank">
+            <span>Nein, zurück zur Startseite</span>
+          </a>
+        </div>
+
+        <div class="nav-arrows">
+          <button class="nav-btn btn-prev">←</button>
+          <span></span>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    const questions = document.querySelectorAll(".question");
+
+    function showStep(index) {
+      questions.forEach(q => q.classList.remove("active"));
+      questions[index].classList.add("active");
+    }
+
+    document.querySelectorAll(".btn-next").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const current = [...questions].findIndex(q => q.classList.contains("active"));
+        if (current < questions.length - 1) showStep(current + 1);
+      });
+    });
+
+    document.querySelectorAll(".btn-prev").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const current = [...questions].findIndex(q => q.classList.contains("active"));
+        if (current > 0) showStep(current - 1);
+      });
+    });
+  </script>
+
+</body>
+</html>
