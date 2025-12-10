@@ -26,7 +26,7 @@
     }
 
     /* --------------------------------------------------------------------
-       BACKGROUND + OVERLAY (for readable header)
+       BACKGROUND + OVERLAY
     -------------------------------------------------------------------- */
     body {
       margin: 0;
@@ -38,7 +38,7 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
-      position: relative; 
+      position: relative;
       overflow: hidden;
     }
 
@@ -60,20 +60,38 @@
       width: 100%;
       max-width: 720px;
       position: relative;
-      z-index: 1; /* content above overlay */
+      z-index: 1;
     }
 
     /* --------------------------------------------------------------------
-       HEADER READABILITY FIX
+       HEADER + BLUR BEHIND IT (NEW)
     -------------------------------------------------------------------- */
-    header h1,
-    header p {
-      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
-    }
 
     header {
+      position: relative;
       text-align: center;
       margin-bottom: 1.5rem;
+      padding: 1.5rem 0 2rem;
+    }
+
+    /* beautiful blurred dark background behind header */
+    header::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 180%;
+      background: rgba(10, 15, 30, 0.55);
+      filter: blur(25px);
+      border-radius: 40px;
+      z-index: -1;
+    }
+
+    header h1,
+    header p {
+      text-shadow: 0 8px 24px rgba(0,0,0,0.85);
     }
 
     header h1 {
@@ -89,7 +107,7 @@
     }
 
     /* --------------------------------------------------------------------
-       CARD + QUESTION STYLES
+       CARD + QUESTIONS
     -------------------------------------------------------------------- */
     .card {
       background: var(--card-bg);
@@ -125,7 +143,6 @@
     .question {
       display: none;
       position: relative;
-      z-index: 1;
     }
 
     .question.active {
@@ -219,9 +236,7 @@
             <span>Ja, ich brauche Orientierung</span>
           </a>
 
-          <button class="btn ghost btn-next">
-            <span>Nein, ich weiß es schon</span>
-          </button>
+          <button class="btn ghost btn-next"><span>Nein, ich weiß es schon</span></button>
         </div>
 
         <div class="nav-arrows">
@@ -241,10 +256,7 @@
         </div>
 
         <div class="actions">
-          <a class="btn primary" href="https://youtube.com">
-            <span>Ja, ich brauche Hilfe bei der Bewerbung</span>
-          </a>
-
+          <a class="btn primary" href="https://youtube.com"><span>Ja, ich brauche Hilfe</span></a>
           <button class="btn ghost btn-next"><span>Nein, weiter</span></button>
         </div>
 
@@ -265,10 +277,7 @@
         </div>
 
         <div class="actions">
-          <a class="btn primary" href="https://chatgpt.com">
-            <span>Ja, ich suche eine Stelle</span>
-          </a>
-
+          <a class="btn primary" href="https://chatgpt.com"><span>Ja, ich suche eine Stelle</span></a>
           <button class="btn ghost btn-next"><span>Nein, weiter</span></button>
         </div>
 
@@ -289,13 +298,8 @@
         </div>
 
         <div class="actions">
-          <a class="btn primary" href="https://google.com">
-            <span>Ja, ich möchte einen Termin buchen</span>
-          </a>
-
-          <a class="btn ghost" href="https://youtube.com">
-            <span>Nein, zurück zur Startseite</span>
-          </a>
+          <a class="btn primary" href="https://google.com"><span>Ja, Termin buchen</span></a>
+          <a class="btn ghost" href="https://youtube.com"><span>Nein, zurück</span></a>
         </div>
 
         <div class="nav-arrows">
