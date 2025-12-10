@@ -25,6 +25,9 @@
       box-sizing: border-box;
     }
 
+    /* --------------------------------------------------------------------
+       BACKGROUND + OVERLAY (for readable header)
+    -------------------------------------------------------------------- */
     body {
       margin: 0;
       min-height: 100vh;
@@ -35,11 +38,37 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
+      position: relative; 
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.85) 0%,
+        rgba(15, 23, 42, 0.45) 40%,
+        rgba(15, 23, 42, 0.75) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
     }
 
     .wrapper {
       width: 100%;
       max-width: 720px;
+      position: relative;
+      z-index: 1; /* content above overlay */
+    }
+
+    /* --------------------------------------------------------------------
+       HEADER READABILITY FIX
+    -------------------------------------------------------------------- */
+    header h1,
+    header p {
+      text-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
     }
 
     header {
@@ -59,6 +88,9 @@
       color: transparent;
     }
 
+    /* --------------------------------------------------------------------
+       CARD + QUESTION STYLES
+    -------------------------------------------------------------------- */
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-xl);
@@ -202,9 +234,7 @@
       <section class="question" data-step="2">
         <div>
           <div class="step-label">Frage 2 von 4</div>
-          <h2 class="question-title">
-            Hast du Fragen zu deiner Bewerbung?
-          </h2>
+          <h2 class="question-title">Hast du Fragen zu deiner Bewerbung?</h2>
           <p class="question-subtitle">
             Wir schauen gemeinsam auf deine Unterlagen und geben dir Feedback zu Anschreiben, Lebenslauf & Co.
           </p>
@@ -215,9 +245,7 @@
             <span>Ja, ich brauche Hilfe bei der Bewerbung</span>
           </a>
 
-          <button class="btn ghost btn-next">
-            <span>Nein, weiter</span>
-          </button>
+          <button class="btn ghost btn-next"><span>Nein, weiter</span></button>
         </div>
 
         <div class="nav-arrows">
@@ -230,9 +258,7 @@
       <section class="question" data-step="3">
         <div>
           <div class="step-label">Frage 3 von 4</div>
-          <h2 class="question-title">
-            Bist du auf der Suche nach einem Praktikum oder einer Ausbildung?
-          </h2>
+          <h2 class="question-title">Bist du auf der Suche nach einem Praktikum oder einer Ausbildung?</h2>
           <p class="question-subtitle">
             In der IHK-Lehrstellenbörse und bei den Praktikumswochen BW findest du aktuelle Angebote in deiner Region.
           </p>
@@ -243,9 +269,7 @@
             <span>Ja, ich suche eine Stelle</span>
           </a>
 
-          <button class="btn ghost btn-next">
-            <span>Nein, weiter</span>
-          </button>
+          <button class="btn ghost btn-next"><span>Nein, weiter</span></button>
         </div>
 
         <div class="nav-arrows">
@@ -258,9 +282,7 @@
       <section class="question" data-step="4">
         <div>
           <div class="step-label">Frage 4 von 4</div>
-          <h2 class="question-title">
-            Hast du weitere Fragen zur dualen Ausbildung?
-          </h2>
+          <h2 class="question-title">Hast du weitere Fragen zur dualen Ausbildung?</h2>
           <p class="question-subtitle">
             Buche dir einen Termin und sprich direkt mit unseren Expertinnen und Experten.
           </p>
@@ -283,7 +305,6 @@
       </section>
 
     </main>
-
   </div>
 
   <script>
